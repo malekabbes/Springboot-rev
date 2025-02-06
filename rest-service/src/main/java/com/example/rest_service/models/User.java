@@ -2,11 +2,13 @@ package com.example.rest_service.models;
 
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User{
     // Ici j'ai mis les attributs necessaires ( spécifié dans la partie tasks: ID /username/npt de passe/pseudonyme)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
