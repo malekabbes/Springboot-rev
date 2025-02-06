@@ -1,6 +1,7 @@
 package com.example.rest_service.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 
@@ -28,7 +29,8 @@ public class User{
 
     //relation 1-n car un utilisaur peux acheter plusieurs books
     //C'est dans le cas ou on aura implementer la logique d'achat de livre c'est pas demandé dans tasks mais c'est important dans la logique de contexte
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private List<Book> purch_books;
 
     public User() {}
@@ -56,7 +58,4 @@ public class User{
 
     public String getPseudonym() { return pseudonym; }
     public void setPseudonym(String pseudonym) { this.pseudonym = pseudonym; }
-
-    public List<Book> getBooks() { return purch_books; }
-    public void setBooks(List<Book> books) { this.purch_books = books; }
 }

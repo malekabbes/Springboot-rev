@@ -1,5 +1,4 @@
 package com.example.rest_service.service.user;
-import com.example.rest_service.generic.ImplementationGeneric;
 import com.example.rest_service.models.User;
 import com.example.rest_service.repository.UserRepository;
 import com.example.rest_service.service.JWTService;
@@ -13,10 +12,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @Transactional
-public class ImplServiceUser  extends ImplementationGeneric<User, Long> implements IUserService {
+public class ImplServiceUser implements IUserService {
     private static final Logger log = LoggerFactory.getLogger(ImplServiceUser.class);
     @Autowired
     private JWTService jwtService;
@@ -28,6 +29,17 @@ public class ImplServiceUser  extends ImplementationGeneric<User, Long> implemen
     private UserRepository repo;
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+
+    @Override
+    public User saveUser(User user) {
+        return repo.save(user);
+    }
+    //findall c'est select*
+    @Override
+    public List<User> findAllUsers() {
+        return this.repo.findAll();
+    }
+
 
     public User register(User user) {
         user.setPassword(encoder.encode(user.getPassword()));

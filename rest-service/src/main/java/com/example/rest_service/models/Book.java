@@ -1,5 +1,8 @@
 package com.example.rest_service.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,8 +25,8 @@ public class Book {
     @Column(name="price",nullable = false)
     private float price;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name="author_id")
     private User author;
 
     // in constructeur sans paramétres pour respecter la tructure de bin
