@@ -60,4 +60,3 @@ public class User{
     public List<Book> getBooks() { return purch_books; }
     public void setBooks(List<Book> books) { this.purch_books = books; }
 }
-
